@@ -4,18 +4,45 @@
  */
 package ui;
 
+import java.awt.CardLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 /**
  *
  * @author Jason
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainJFrame extends javax.swing.JFrame {
+    private JPanel mainWorkArea;
 
     /**
-     * Creates new form MainFrame
+     * Creates new form MainJFrame
      */
-    public MainFrame() {
+    public MainJFrame() {
         initComponents();
+        mainWorkArea = new JPanel();
+        mainWorkArea.setLayout(new CardLayout());
+        // 将 mainWorkArea 添加到 JFrame 的内容窗格中
+        getContentPane().setLayout(new java.awt.BorderLayout());
+        getContentPane().add(mainWorkArea, java.awt.BorderLayout.CENTER);
+        
+        setSize(800, 600);          // 设置窗口大小
+        setResizable(false);        // 不允许调整窗口大小
+        setLocationRelativeTo(null); // 窗口居中显示
+
+        // 调用方法将 LoginScreen 添加到 mainWorkArea 中，并显示它
+        setLoginScreen();
     }
+    
+    private void setLoginScreen() {
+        // 创建 LoginScreen，并将 mainWorkArea 传入（确保 LoginScreen 类中有相应的构造器）
+        LoginScreen ls = new LoginScreen(mainWorkArea);
+        // 添加 LoginScreen 到 mainWorkArea，使用唯一标识 "LoginScreen"
+        mainWorkArea.add("LoginScreen", ls);
+        // 通过 CardLayout 显示 LoginScreen
+        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+        layout.show(mainWorkArea, "LoginScreen");
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,11 +59,11 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         pack();
@@ -59,20 +86,20 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                new MainJFrame().setVisible(true);
             }
         });
     }
