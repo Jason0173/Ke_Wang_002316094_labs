@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# NetBeans per-user settings and build output
+**/nbproject/private/
+**/build/
+**/dist/
+
+# javac output
+out/
+*.class

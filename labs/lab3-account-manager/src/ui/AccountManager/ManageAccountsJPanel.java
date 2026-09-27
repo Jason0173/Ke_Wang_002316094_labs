@@ -172,7 +172,7 @@ public class ManageAccountsJPanel extends javax.swing.JPanel {
         if(selectedRow >= 0){
             Account selAccount = (Account)tblAccounts.getValueAt(selectedRow, 0);
             
-            ViewAccountJPanel panel = new ViewAccountJPanel(userProcessContainer,accountDirectory,selectedAccount);
+            ViewAccountJPanel panel = new ViewAccountJPanel(userProcessContainer,accountDirectory,selAccount);
             userProcessContainer.add("ViewAccountJPanel", panel);
             CardLayout layout = (CardLayout)userProcessContainer.getLayout();
             layout.next(userProcessContainer);
